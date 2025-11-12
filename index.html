@@ -1,77 +1,24 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Calendrier plus beau que CELCAT</title>
-        <link rel="stylesheet" href="style.css" />
+<html lang="">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet" />
+		<link rel="icon" href="/favicon.ico">
+		<link rel="manifest" href="/manifest.webmanifest">
 
-        <script src="https://cdn.tailwindcss.com"></script>
-        <script>
-            tailwind.config = {
-                theme: {
-                    fontFamily: {
-                        'sans': ['"Varela Round"', 'sans-serif']
-                    }
-                }
-            }
-        </script>
-        <script src="./index.js"></script>
-    </head>
-    <body onload="fstload()" class="font-sans select-none space-y-8 sm:px-16 sm:py-8 dark:bg-slate-950 dark:text-white">
-        <div class="px-8 pt-8 space-y-4">
-            <div class="flex place-content-center">
-                <div id="btnskip" class="space-x-0.5"></div>
-            </div>
-            <div class="max-sm:overflow-x-scroll">
-                <div class="flex place-content-center space-x-4 max-sm:w-fit">
-                    <select class="bg-slate-100 text-sm font-semibold rounded-full outline-none px-4 dark:bg-slate-900" onchange="load_buttons(parseInt(this.value, 10), parseInt(this.value, 10) + 4, -1)">
-                        <option value="0">MMI-1</option>
-                        <option value="4">MMI-2</option>
-                    </select>
-                    <div id="btngrp" class="flex space-x-0.5 max-sm:w-fit"></div>
-                </div>
-            </div>
-        </div>
+		<title>BetterCelcat</title>
 
-        <div>
-            <div id="loading" class="hidden text-center text-sm font-semibold p-8 pt-0 space-y-4">
-                <img src='./assets/spin.png' class="block w-5 h-5 mx-auto animate-spin" />
-                <span id="slowMessage" class="block text-black/50 vertical-align-bottom dark:text-white/50"></span>
-            </div>
-            <div id="timetable" class="flex max-sm:pr-8"></div>
-            <div id="legend" class="p-8 space-y-2 md:pb-0">
-                <div class="place-content-center max-sm:overflow-x-auto max-md:space-y-1 md:flex md:space-x-2">
-                    <div class="inline-flex bg-slate-500/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-slate-500 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-slate-500 text-sm font-semibold">Terminé / Inconnu</div>
-                    </div>
-                    <div class="inline-flex bg-fuchsia-600/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-fuchsia-600 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-fuchsia-600 text-sm font-semibold">CM</div>
-                    </div>
-                    <div class="inline-flex bg-emerald-500/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-emerald-500 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-emerald-500 text-sm font-semibold">TD</div>
-                    </div>
-                    <div class="inline-flex bg-indigo-700/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-indigo-700 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-indigo-700 text-sm font-semibold">TP</div>
-                    </div>
-                    <div class="inline-flex bg-rose-500/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-rose-500 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-rose-500 text-sm font-semibold">DS</div>
-                    </div>
-                    <div class="inline-flex bg-violet-500/15 rounded-full px-2 py-1 space-x-1.5">
-                        <div class="bg-violet-500 rounded-full w-2 h-2 my-auto"></div>
-                        <div class="text-violet-500 text-sm font-semibold">Projet tutoré</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </body>
+		<meta property="og:title" content="BetterCelcat" />
+		<meta property="og:description" content="L'emploi du temps plus beau que CELCAT'" />
+		<meta property="og:image" content="/sample.png" />
+		<meta property="og:color" content="#622FB5" />
+		<meta property="og:author" content="MMI Vélizy" />
+
+		<meta name="theme-color" content="#020618" />
+	</head>
+	<body class="bg-slate-950 text-white">
+		<div id="app"></div>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
 </html>
