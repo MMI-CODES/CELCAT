@@ -126,7 +126,7 @@
 			</div>
 		</div>
 
-		<div v-else class="cursor-pointer flex text-white rounded-[20px] w-full" :style="{ backgroundColor: color, height: isMobileViewport ? '48px' : '56px' }">
+		<div v-else class="cursor-pointer flex text-white rounded-[20px] w-full" :style="{ backgroundColor: color, height: isMobileViewport ? '64px' : '56px' }">
 			<div class="bg-slate-950/10 w-4 h-full overflow-hidden">
 				<div
 					v-for="(item, idx) in 8"
@@ -136,10 +136,10 @@
 				></div>
 			</div>
 			<div class="flex-1 pl-3 pr-4">
-				<div class="flex items-center h-full">
-					<h3 class="font-black line-clamp-1">{{ course.summary }}</h3>
-					<div class="grow"></div>
+				<div class="flex items-center h-full gap-2">
 					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg px-2 py-1">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
+					<h3 class="grow font-black line-clamp-1">{{ course.summary }}</h3>
+					<span class="text-sm font-semibold line-clamp-1 lg:hidden">{{ toFormatHHMM(new Date(course.start)) }} - {{ toFormatHHMM(new Date(course.end)) }}</span>
 				</div>
 			</div>
 		</div>
