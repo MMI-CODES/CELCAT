@@ -119,7 +119,7 @@
 			<button v-if="!isMobileViewport" class="bg-slate-500/15 text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="ffwd"><FastForward className="fill-white w-4 h-4" /></button>
 		</div>
 	</header>
-	<main class="flex p-8 gap-2">
+	<main class="flex px-4 gap-2 md:p-8">
 		<section v-for="(item, index) in viewport" :key="index + offset" class="flex-1 flex flex-col">
 			<div class="text-white text-xl text-center font-semibold mb-8">{{ weekdays[index + offset] }} {{ new Date(day.getTime() + (index + offset - day.getDay() + 1) * 24 * 3600 * 1000 ).toLocaleDateString().replace('/2025', '') }}</div>
 			<CourseView v-for="(course, idx) in (days[index + offset] || [])" :key="(course.uid || '') + '-' + (new Date(course.start)).getTime()" :course="course" :index="idx" />

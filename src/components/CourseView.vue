@@ -18,8 +18,8 @@
 	const calcSize = () => {
 		if (isMobileViewport.value) {
 			if (props.course.type == 'pause') size.value = 0
-			else if (props.course.type == 'lunch') size.value = 48
-			else size.value = 96
+			else if (props.course.type == 'lunch') size.value = 64
+			else size.value = 112
 		} else {
 			size.value = 64 * getDuration(props.course.start, props.course.end) - 8 // -8 for the padding
 		}
