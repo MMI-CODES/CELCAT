@@ -103,7 +103,7 @@
 	}
 </script>
 <template>
-	<header class="bg-slate-950 p-8 space-y-6">
+	<header class="bg-slate-100 p-8 space-y-6 dark:bg-slate-900">
 		<div class="flex items-center justify-center gap-2">
 			<img src="@/assets/logo.svg" class="block w-10 h-10" /> <h1 class="select-none text-4xl font-bold">BetterCelcat</h1>
 		</div>
@@ -121,7 +121,7 @@
 	</header>
 	<main class="flex px-4 gap-2 md:p-8">
 		<section v-for="(item, index) in viewport" :key="index + offset" class="flex-1 flex flex-col">
-			<div class="text-white text-xl text-center font-semibold mb-8">{{ weekdays[index + offset] }} {{ new Date(day.getTime() + (index + offset - day.getDay() + 1) * 24 * 3600 * 1000 ).toLocaleDateString().replace('/2025', '') }}</div>
+			<div class="text-xl text-center font-semibold mb-8">{{ weekdays[index + offset] }} {{ new Date(day.getTime() + (index + offset - day.getDay() + 1) * 24 * 3600 * 1000 ).toLocaleDateString().replace('/2025', '') }}</div>
 			<CourseView v-for="(course, idx) in (days[index + offset] || [])" :key="(course.uid || '') + '-' + (new Date(course.start)).getTime()" :course="course" :index="idx" />
 		</section>
 	</main>
