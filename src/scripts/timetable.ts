@@ -48,12 +48,12 @@ export async function loadWeek(group_id: string, startDate: Date) {
 				tempDays[dayIndex]!.push({
 					uid: '',
 					type: isLunch ? 'lunch' : 'pause',
-					summary: isLunch ? "Pause méridienne" : "Pause",
+					summary: isLunch ? "Déjeuner" : "Pause",
 					start: lastCourse.end,
 					end: course.start,
 					teachers: [],
 					location: '',
-					module: ''
+					module: isLunch ? 'lunch' : 'pause'
 				} as Course)
 			}
 

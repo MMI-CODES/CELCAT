@@ -2,7 +2,7 @@
 	import { ref, onMounted, watch } from 'vue';
 
 	import type { Course } from 'celcat';
-	import { toFormatHHMM, colors, getDuration } from '@/scripts/utils';
+	import { toFormatHHMM, getDuration, colors, emojis } from '@/scripts/utils';
 
 	const props = defineProps<{
 		course: Course,
@@ -51,11 +51,19 @@
 		if (props.course.type == 'pause') {
 			color.value = 'transparent'
 		} else if (props.course.end < new Date()) {
-			color.value = '#31415850'
+			color.value = '#31415830'
 		} else if (Object.keys(colors).includes(props.course.type)) {
 			color.value = colors[props.course.type]!
 		} else {
 			color.value = '#D29130'
+		}
+	}
+
+	const calcEmoji = () => {
+		if (Object.keys(emojis).includes(props.course.module)) {
+			return emojis[props.course.module]!
+		} else {
+			return ''
 		}
 	}
 
@@ -87,7 +95,7 @@
 
 		<div
 			v-else-if="course.type == 'lunch'"
-			class="flex bg-slate-900 text-white rounded-[20px] w-full gap-1 overflow-hidden"
+			class="flex bg-[#31415850] text-white rounded-[20px] w-full gap-1 overflow-hidden"
 			:style="{ cursor: isMobileViewport ? 'pointer' : 'default', opacity: +!!isMobileViewport, height: size + 'px' }"
 		>
 			<div class="bg-slate-950/10 w-4 h-full overflow-hidden">
@@ -98,10 +106,10 @@
 					class="h-2"
 				></div>
 			</div>
-			<div class="flex-1 p-2 pr-4">
-				<div class="flex items-center h-full">
-					<h3 class="font-black line-clamp-1">{{ course.summary }}</h3>
-					<div class="grow"></div>
+			<div class="flex-1 py-2 pl-1 pr-4">
+				<div class="flex items-center gap-1 h-full">
+					<div class="text-2xl">{{ calcEmoji() }}</div>
+					<h3 class="grow font-black line-clamp-1">{{ course.summary }}</h3>
 					<span class="text-sm font-semibold line-clamp-1">{{ toFormatHHMM(new Date(course.start)) }} - {{ toFormatHHMM(new Date(course.end)) }}</span>
 				</div>
 			</div>
@@ -117,9 +125,9 @@
 				></div>
 			</div>
 			<div class="flex-1 p-2 pr-4">
-				<div class="flex items-center">
-					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg px-2 py-1">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
-					<div class="grow"></div>
+				<div class="flex items-center gap-2">
+					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg max-w-16 px-2 py-1">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
+					<span class="flex-1 text-xs text-center font-semibold py-1">{{ calcEmoji() }} {{ course.module }}</span>
 					<span class="text-sm font-semibold line-clamp-1">{{ toFormatHHMM(new Date(course.start)) }} - {{ toFormatHHMM(new Date(course.end)) }}</span>
 				</div>
 				<div class="pl-1">
