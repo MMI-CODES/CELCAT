@@ -48,7 +48,10 @@ import { focusedCourse } from '@/scripts/timetable';
 				<div class="flex items-center justify-center bg-slate-950/5 text-2xl rounded-full w-13 h-13 dark:bg-white/5">
 					{{ calcEmoji()  }}
 				</div>
-				<div class="flex flex-col justify-center">
+				<div v-if="course.type == 'Réunion'" class="flex flex-col justify-center">
+					<h2 class="text-lg font-bold">{{ course.summary }}</h2>
+				</div>
+				<div v-else class="flex flex-col justify-center">
 					<h2 class="text-lg font-bold -mt-1 -mb-1.5">{{ course.summary }}</h2>
 					<span class="text-white/50 text-sm font-medium" :style="{ color: color }">{{ course.type }} - {{ course.module }}</span>
 				</div>

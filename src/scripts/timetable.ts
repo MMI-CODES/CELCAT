@@ -53,6 +53,12 @@ export async function loadWeek(group_id: string, startDate: Date) {
 				} as Course)
 			}
 
+			if (course.module == 'Reunion') {
+				course.type = 'Réunion'
+				course.module = 'Réunion'
+				course.summary = 'Réunion'
+			}
+
 			tempDays[dayIndex]!.push(course);
 			lastCourse = course
 		});

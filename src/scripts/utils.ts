@@ -46,5 +46,6 @@ export const emojis: Record<string, string> = {
 
 	/* Autres */
 	'lunch': '🍽️', // Pause dej
+	'Réunion': '🗓️', // Réunion
 	'Portfolio': '💼' // Portfolio
 }
