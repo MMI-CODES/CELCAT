@@ -1,6 +1,8 @@
 <script setup lang="ts">
 	import { ref, onMounted } from 'vue';
 
+	import CrossIcon from '@/components/icons/CrossIcon.vue';
+
 	import type { Course } from 'celcat';
 	import type { Module } from '@/scripts/utils';
 
@@ -39,18 +41,19 @@
 </script>
 <template>
 	<section class="select-none fixed top-0 z-500 bg-slate-300/60 backdrop-blur-md w-screen h-screen dark:bg-slate-950/60 md:flex md:flex-col md:items-center md:justify-center">
-		<div class="bg-white font-medium shadow-2xl p-6 space-y-4 md:rounded-3xl md:min-w-1/2 md:p-8 lg:min-w-1/3 dark:bg-slate-900">
+		<div class="bg-white font-medium shadow-2xl p-6 space-y-4 max-md:h-screen md:rounded-3xl md:min-w-1/2 md:p-8 lg:min-w-1/3 dark:bg-slate-900">
 			<div class="flex items-center gap-2">
-				<div class="flex items-center justify-center bg-slate-950/5 text-2xl rounded-full w-13 h-13 dark:bg-white/5">
+				<div class="shrink-0 flex items-center justify-center bg-slate-950/5 text-2xl rounded-full w-13 h-13 dark:bg-white/5">
 					{{ module.emoji  }}
 				</div>
-				<div v-if="course.type == 'Réunion'" class="flex flex-col justify-center">
+				<div v-if="course.type == 'Réunion'" class="flex-1 flex flex-col justify-center">
 					<h2 class="text-lg font-bold">{{ isMobileViewport ? module.short : course.summary }}</h2>
 				</div>
-				<div v-else class="flex flex-col justify-center">
+				<div v-else class="flex-1 flex flex-col justify-center">
 					<h2 class="text-lg font-bold -mt-1 -mb-1.5">{{ isMobileViewport ? module.short : course.summary }}</h2>
-					<span class="text-white/50 text-sm font-medium" :style="{ color: color }">{{ course.type }} - {{ course.module }}</span>
+					<span class="text-white/50 text-sm font-semibold" :style="{ color: color }">{{ course.type }} - {{ course.module }}</span>
 				</div>
+				<div class="cursor-pointer flex items-center gap-1 bg-slate-950/5 text-white text-sm font-semibold rounded-full p-1.5 duration-300 dark:bg-white/5 hover:scale-105" v-on:click="focusedCourse = null"><CrossIcon className="stroke-white/50 stroke-3 w-3.5 h-3.5" /></div>
 			</div>
 			<div>
 				<p v-if="isMobileViewport"><span class="font-bold">Matière:</span> {{ course.summary }}</p>
@@ -67,7 +70,6 @@
 				<p class="font-bold">Description:</p>
 				<p>{{ module.description }}</p>
 			</div>
-			<button class="cursor-pointer block text-white text-sm font-bold rounded-full w-fit px-5 py-3 mx-auto" v-on:click="focusedCourse = null" :style="{ backgroundColor: color }">Fermer</button>
 		</div>
 	</section>
 </template>
