@@ -10,6 +10,7 @@
 	import type { Course } from 'celcat';
 
 	import { loadWeek, focusedCourse } from '@/scripts/timetable';
+	import { toFormatJJMoisAAAA } from '@/scripts/utils';
 
 
 	const isMobileViewport = ref<boolean>(false);
@@ -104,6 +105,26 @@
 			await bwd()
 		}
 	}
+
+	function sectionDate(index: number) {
+		return new Date(day.value.getTime() + (index + offset.value - day.value.getDay() + 1) * 24 * 3600 * 1000 );
+	}
+
+	function isSameWeek(date: Date, other: Date = new Date()) {
+		const getMonday = (d: Date) => {
+			const copy = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+			const dayOfWeek = copy.getDay();
+			const diff = (dayOfWeek === 0) ? -6 : 1 - dayOfWeek; // convert Sunday(0) to previous Monday
+			copy.setDate(copy.getDate() + diff);
+			copy.setHours(0,0,0,0);
+			return copy;
+		}
+
+		const a = getMonday(date);
+		const b = getMonday(other);
+
+		return a.getFullYear() === b.getFullYear() && a.getTime() === b.getTime();
+	}
 </script>
 <template>
 	<CourseFocus v-if="focusedCourse" :course="focusedCourse" />
@@ -124,7 +145,10 @@
 	</header>
 	<main class="flex px-4 pb-4 gap-2 md:p-8">
 		<section v-for="(item, index) in viewport" :key="index + offset" class="flex-1 flex flex-col">
-			<div class="text-xl text-center font-semibold mb-8 max-sm:mb-4">{{ weekdays[index + offset] }} {{ new Date(day.getTime() + (index + offset - day.getDay() + 1) * 24 * 3600 * 1000 ).toLocaleDateString().replace('/2025', '') }}</div>
+			<div class="text-xl text-center mb-8 -space-y-1 max-sm:mb-4">
+				<p class="font-bold">{{ weekdays[index + offset] }}</p>
+				<p v-if="!isSameWeek(sectionDate(index))" class="text-sm font-semibold opacity-50">{{ sectionDate(index).getFullYear() == 2026 ? toFormatJJMoisAAAA(sectionDate(index)).full : toFormatJJMoisAAAA(sectionDate(index)).month  }}</p>
+			</div>
 			<CourseView v-for="(course, idx) in (days[index + offset] || [])" :key="(course.uid || '') + '-' + (new Date(course.start)).getTime()" :course="course" :index="idx" />
 		</section>
 	</main>

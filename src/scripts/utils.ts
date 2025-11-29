@@ -9,6 +9,30 @@ export const toFormatHHMM = (date: Date): string => {
     return `${hours}:${minutes}`;
 }
 
+export const toFormatJJMoisAAAA = (date: Date, short = false): Record<string, string> => {
+	const day: string = date.getDate().toString().padStart(2)
+	const mois: string = [
+		short ? 'janvier' : 'jan.',
+		short ? 'février' : 'fév.',
+		short ? 'mars' : 'mars',
+		short ? 'avril' : 'avr.',
+		short ? 'mai' : 'mai',
+		short ? 'juin' : 'juin',
+		short ? 'juillet' : 'juil.',
+		short ? 'août' : 'août',
+		short ? 'septembre' : 'sep.',
+		short ? 'octobre' : 'oct.',
+		short ? 'novembre' : 'nov.',
+		short ? 'décembre' : 'déc.'
+	][date.getMonth()]!
+	const année: number = date.getFullYear()
+
+	return {
+		full: `${day} ${mois} ${année}`,
+		month: `${day} ${mois}`
+	}
+}
+
 export const colors: Record<string, string[]> = {
 	// SAMPLE             VERY DARK     DARKER       DARK         ORIGINAL     LIGHT         PASTEL      VERY LIGHT
 	'DS':             ['#0F0F1A', '#990099', '#CC00CC', '#FF48F3', '#FF99F7', '#FFB3F7', '#FFE6FF'],
