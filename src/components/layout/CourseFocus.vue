@@ -32,7 +32,7 @@
 	});
 </script>
 <template>
-	<section class="select-none fixed top-0 z-500 bg-slate-300/60 backdrop-blur-md w-screen h-screen dark:bg-slate-950/60 md:flex md:flex-col md:items-center md:justify-center">
+	<section class="select-none fixed top-0 z-500 bg-slate-300/60 backdrop-blur-md w-screen h-screen dark:bg-slate-950/60 md:flex md:flex-col md:items-center md:justify-center" :style="{ backgroundColor: (color[isDark() ? 0 : 6] || '#ffffff') + '50' }">
 		<div class="bg-white font-semibold shadow-2xl p-6 space-y-4 max-md:h-screen md:rounded-3xl md:min-w-1/2 md:p-8 lg:min-w-1/3 dark:bg-slate-900" :style="{ backgroundColor: (color[isDark() ? 0 : 6] || '#ffffff'), color: (color[isDark() ? 5 : 3] || '#000000') }">
 			<div class="flex items-center gap-2">
 				<div class="shrink-0 flex items-center justify-center bg-slate-950/5 text-2xl rounded-full w-13 h-13 dark:bg-white/5" :style="{ backgroundColor: (color[3] || '#000000') + '20' }">
