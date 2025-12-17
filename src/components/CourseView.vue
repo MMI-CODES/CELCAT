@@ -97,7 +97,7 @@
 			:style="{ cursor: maxScreen('xs') ? 'pointer' : 'default', opacity: +!!maxScreen('sm'), height: size + 'px' }"
 		>
 			<div class="w-8 h-full p-3 overflow-hidden">
-				<div class="rounded-full h-full" :style="{ backgroundColor: color[isDark() ? 2 : 4], opacity: isDark() ? .5 : 1 }"></div>
+				<div class="rounded-full h-full" :style="{ backgroundColor: color[2], opacity: isDark() ? .5 : 1 }"></div>
 			</div>
 			<div class="flex-1 py-2 pr-4">
 				<div class="flex items-center gap-1 h-full">
@@ -113,13 +113,13 @@
 		v-else
 		:style="{ marginTop: marginTop + 'px' }"
 	>
-		<div class="cursor-pointer flex text-white rounded-[20px] w-full overflow-hidden" :style="{ backgroundColor: color[isDark() ? 3 : 5], color: isDark() ? 'white' : color[3], height: size + 'px' }" v-on:click="focusedCourse = course">
+		<div class="cursor-pointer flex text-white rounded-[20px] w-full overflow-hidden" :style="{ backgroundColor: color[3], color: 'white', height: size + 'px' }" v-on:click="focusedCourse = course">
 			<div class="w-8 h-full p-3 overflow-hidden">
-				<div class="rounded-full h-full" :style="{ backgroundColor: color[isDark() ? 2 : 4], opacity: isDark() ? .5 : 1 }"></div>
+				<div class="rounded-full h-full" :style="{ backgroundColor: color[2], opacity: isDark() ? .5 : 1 }"></div>
 			</div>
 			<div class="flex-1 py-2 pr-4">
 				<div class="flex items-center gap-2">
-					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg max-w-16 px-2 py-1" :style="{ backgroundColor: color[isDark() ? 2 : 4] + '50' }">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
+					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg max-w-16 px-2 py-1" :style="{ backgroundColor: color[2] + '50' }">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
 					<span class="flex-1 text-xs text-center font-semibold py-1">{{ module.emoji }} {{ course.module }}</span>
 					<span class="text-sm font-semibold line-clamp-1">{{ toFormatHHMM(new Date(course.start)) }} - {{ toFormatHHMM(new Date(course.end)) }}</span>
 				</div>

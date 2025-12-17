@@ -149,18 +149,18 @@
 			<img src="@/assets/logo.svg" class="block w-10 h-10 max-sm:w-5 max-sm:h-5" /> <h1 class="select-none text-4xl font-bold max-sm:text-xl">BetterCelcat</h1>
 		</div>
 		<div class="flex gap-2 justify-center">
-			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="fbwd"><FastBackward className="fill-slate-950 w-6 h-6 dark:fill-white" /></button>
+			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="fbwd"><FastBackward className="fill-white w-6 h-6" /></button>
 
 			<select v-model="promo_id" class="block bg-slate-500/15 text-sm font-bold rounded-full px-4 py-2">
 				<option class="text-slate-900 text-sm text-center font-semibold" v-for="promo in Object.keys(groups)" :value="promo">{{ promo }}</option>
 			</select>
 
-			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="ffwd"><FastForward className="fill-slate-950 w-6 h-6 dark:fill-white" /></button>
+			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="ffwd"><FastForward className="fill-white w-6 h-6" /></button>
 		</div>
 		<div class="flex items-center justify-center">
 			<div class="block">
 				<button
-					class="text-slate-900 text-sm text-center font-semibold border-b-4 px-4 py-2 duration-150 dark:text-white hover:bg-slate-500/25"
+					class="text-sm text-center font-semibold border-b-4 px-4 py-2 duration-150 hover:bg-slate-500/25"
 					:class="group_id == groups[promo_id]![group]! ? 'border-b-red-500' : 'border-transparent'"
 					v-for="group in Object.keys(groups[promo_id]!)"
 					@click="() => { group_id = groups[promo_id]![group]! }"
