@@ -146,7 +146,7 @@
 
 	<header class="p-8 space-y-6 max-sm:space-y-4">
 		<div class="flex items-center justify-center gap-2">
-			<img src="@/assets/logo.svg" class="block w-10 h-10 max-sm:w-5 max-sm:h-5" /> <h1 class="select-none text-4xl font-bold max-sm:text-xl">BetterCelcat</h1>
+			<img src="@/assets/logo.svg" class="block w-10 h-10 max-sm:w-5 max-sm:h-5" /> <h1 class="select-none text-4xl font-bold max-sm:text-xl">Vencat</h1>
 		</div>
 		<div class="flex gap-2 justify-center">
 			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="fbwd"><FastBackward className="fill-slate-950 w-6 h-6 dark:fill-white" /></button>
