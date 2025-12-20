@@ -145,8 +145,8 @@
 	<CourseFocus v-if="focusedCourse" :course="focusedCourse" />
 
 	<header class="p-8 space-y-6 max-sm:space-y-4">
-		<div class="flex items-center justify-center gap-2">
-			<img src="@/assets/logo.svg" class="block w-10 h-10 max-sm:w-5 max-sm:h-5" /> <h1 class="select-none text-4xl font-bold max-sm:text-xl">Vencat</h1>
+		<div class="flex items-center justify-center gap-4">
+			<img src="@/assets/logo.svg" class="block w-12 h-12 max-sm:w-5 max-sm:h-5" /> <h1 class="select-none text-4xl font-black max-sm:text-xl">Vencat</h1>
 		</div>
 		<div class="flex gap-2 justify-center">
 			<button class="text-white text-sm font-semibold rounded-full px-3 py-2 duration-150 hover:scale-105" @click="fbwd"><FastBackward className="fill-slate-950 w-6 h-6 dark:fill-white" /></button>
@@ -160,8 +160,8 @@
 		<div class="flex items-center justify-center">
 			<div class="block">
 				<button
-					class="text-slate-900 text-sm text-center font-semibold border-b-4 px-4 py-2 duration-150 dark:text-white hover:bg-slate-500/25"
-					:class="group_id == groups[promo_id]![group]! ? 'border-b-red-500' : 'border-transparent'"
+					class="text-slate-900 text-sm text-center font-bold border-b-4 px-4 py-2 duration-150 dark:text-white"
+					:class="group_id == groups[promo_id]![group]! ? 'border-b-red-500' : 'border-transparent hover:border-b-red-500/25'"
 					v-for="group in Object.keys(groups[promo_id]!)"
 					@click="() => { group_id = groups[promo_id]![group]! }"
 				>{{ group }}</button>
@@ -171,7 +171,7 @@
 	<main class="flex px-4 pb-4 gap-2 md:p-8">
 		<section v-for="(item, index) in viewport" :key="group_id + '-' + index + '-' + offset" class="flex-1 flex flex-col">
 			<div class="text-xl text-center mb-8 -space-y-1 max-sm:mb-4">
-				<p class="font-bold">{{ weekdays[index + offset] }}</p>
+				<h2 class="font-bold">{{ weekdays[index + offset] }}</h2>
 				<p v-if="!isSameWeek(sectionDate(index))" class="text-sm font-semibold opacity-50">{{ sectionDate(index).getFullYear() == 2026 ? toFormatJJMoisAAAA(sectionDate(index)).full : toFormatJJMoisAAAA(sectionDate(index)).month  }}</p>
 			</div>
 			<CourseView v-for="(course, idx) in (days[index + offset] || [])" :key="index + '-' + idx + '-' + (course.uid || '') + '-' + (new Date(course.start)).getTime()" :course="course" :index="idx" />

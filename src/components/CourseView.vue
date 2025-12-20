@@ -97,7 +97,7 @@
 			:style="{ cursor: maxScreen('xs') ? 'pointer' : 'default', opacity: +!!maxScreen('sm'), height: size + 'px' }"
 		>
 			<div class="w-8 h-full p-3 overflow-hidden">
-				<div class="rounded-full h-full" :style="{ backgroundColor: color[isDark() ? 2 : 4], opacity: isDark() ? .5 : 1 }"></div>
+				<div class="rounded-full h-full" :style="{ backgroundColor: props.course.end < new Date() ?color[isDark() ? 2 : 4] : '#ffffff20', opacity: isDark() ? .5 : 1 }"></div>
 			</div>
 			<div class="flex-1 py-2 pr-4">
 				<div class="flex items-center gap-1 h-full">
@@ -113,18 +113,18 @@
 		v-else
 		:style="{ marginTop: marginTop + 'px' }"
 	>
-		<div class="cursor-pointer flex text-white rounded-[20px] w-full overflow-hidden" :style="{ backgroundColor: color[isDark() ? 3 : 5], color: isDark() ? 'white' : color[3], height: size + 'px' }" v-on:click="focusedCourse = course">
+		<div class="cursor-pointer flex backdrop-blur-md text-white rounded-[20px] w-full overflow-hidden" :style="{ backgroundColor: props.course.end < new Date() ? '#ffffff30' : color[isDark() ? 3 : 5], color: isDark() ? 'white' : color[3], height: size + 'px' }" v-on:click="focusedCourse = course">
 			<div class="w-8 h-full p-3 overflow-hidden">
-				<div class="rounded-full h-full" :style="{ backgroundColor: color[isDark() ? 2 : 4], opacity: isDark() ? .5 : 1 }"></div>
+				<div class="rounded-full h-full" :style="{ backgroundColor: props.course.end < new Date() ? '#ffffff50' : color[isDark() ? 2 : 4], opacity: isDark() ? .5 : 1 }"></div>
 			</div>
 			<div class="flex-1 py-2 pr-4">
 				<div class="flex items-center gap-2">
-					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg max-w-16 px-2 py-1" :style="{ backgroundColor: color[isDark() ? 2 : 4] + '50' }">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
+					<span class="bg-slate-950/5 text-xs font-semibold truncate rounded-lg max-w-16 px-2 py-1" :style="{ backgroundColor: props.course.end < new Date() ? '#ffffff30' : (color[isDark() ? 2 : 4] + '30') }">{{ course.location.split('-')[0]!.trim() || "Salle Inconnue" }}</span>
 					<span class="flex-1 text-xs text-center font-semibold py-1">{{ module.emoji }} {{ course.module }}</span>
 					<span class="text-sm font-semibold line-clamp-1">{{ toFormatHHMM(new Date(course.start)) }} - {{ toFormatHHMM(new Date(course.end)) }}</span>
 				</div>
-				<div>
-					<h3 class="font-black line-clamp-1">{{ module.short }}</h3>
+				<div class="py-0.5 -space-y-1">
+					<h3 class="text-[17px] font-bold line-clamp-1">{{ module.short }}</h3>
 					<span v-if="getDuration(course.start, course.end) >= 1.5 || maxScreen('xs')" class="text-sm font-semibold line-clamp-1">
 						<span v-if="course.teachers.length == 1">{{ course.teachers[0] }}</span>
 						<span v-else>{{ course.teachers.length }} intervenants</span>
