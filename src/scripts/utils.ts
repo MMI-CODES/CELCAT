@@ -9,6 +9,20 @@ export const toFormatHHMM = (date: Date): string => {
     return `${hours}:${minutes}`;
 }
 
+export const durationHHMM = (duration: number): string => {
+    const hours = Math.floor(duration / 1);
+    const minutes = Math.round(60 * (duration % 1));
+
+	if (duration % 1 == 0) {
+		return `${hours}h`;
+	} else if (duration < 1) {
+		return `${minutes}min`;
+	} else {
+		return `${hours}h${minutes}min`;
+	}
+
+}
+
 export const toFormatJJMoisAAAA = (date: Date, short = false): Record<string, string> => {
 	const day: string = date.getDate().toString().padStart(2)
 	const mois: string = [

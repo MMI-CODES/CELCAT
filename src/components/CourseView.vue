@@ -4,7 +4,7 @@
 	import type { Course } from 'celcat';
 	import type { Module } from '@/scripts/utils';
 
-	import { toFormatHHMM, getDuration, colors, modules } from '@/scripts/utils';
+	import { toFormatHHMM, durationHHMM, getDuration, colors, modules } from '@/scripts/utils';
 	import { maxScreen, isDark } from '@/scripts/media';
 	import { focusedCourse } from '@/scripts/timetable';
 
@@ -79,13 +79,17 @@
 <template>
 	<div
 		v-if="course.type == 'pause'"
-		class="select-none duration-500 sm:py-1 hover:scale-102"
+		class="select-none sm:py-1"
 		:style="{ marginTop: marginTop + 'px' }"
 	>
 		<div
-			:style="{ height: size  + 'px' }"
-			class="max-sm:hidden"
-		></div>
+			:style="maxScreen('xs') ? { height: size  + 'px' } : {}"
+			:class="maxScreen('xs') ? 'flex items-center h-8 px-8 py-4 gap-4' : 'block'"
+		>
+			<div v-if="maxScreen('xs')" class="grow bg-white/40 rounded-full h-0.5"></div>
+			<h3 class="text-white/75 text-xs text-center">Pause de {{ durationHHMM(getDuration(course.start, course.end)) }}</h3>
+			<div v-if="maxScreen('xs')" class="grow bg-white/40 rounded-full h-0.5"></div>
+		</div>
 	</div>
 	<div
 		class="select-none py-1"
