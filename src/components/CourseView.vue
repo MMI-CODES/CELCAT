@@ -83,12 +83,15 @@
 		:style="{ marginTop: marginTop + 'px' }"
 	>
 		<div
-			:style="maxScreen('xs') ? { height: size  + 'px' } : {}"
-			:class="maxScreen('xs') ? 'flex items-center h-8 px-8 py-4 gap-4' : 'block'"
+			:style="maxScreen('xs') ? {} : { height: size  + 'px' }"
+			class="flex gap-4 px-8"
+			:class="maxScreen('xs') ? 'items-center h-8' : 'pt-2'"
 		>
-			<div v-if="maxScreen('xs')" class="grow bg-white/40 rounded-full h-0.5"></div>
-			<h3 class="text-white/75 text-xs text-center">Pause de {{ durationHHMM(getDuration(course.start, course.end)) }}</h3>
-			<div v-if="maxScreen('xs')" class="grow bg-white/40 rounded-full h-0.5"></div>
+			<div class="grow flex gap-4 items-center h-fit">
+				<div class="grow bg-white/40 rounded-full h-0.5"></div>
+				<h3 class="text-white/75 text-xs text-center">Pause de {{ durationHHMM(getDuration(course.start, course.end)) }}</h3>
+				<div class="grow bg-white/40 rounded-full h-0.5"></div>
+			</div>
 		</div>
 	</div>
 	<div
